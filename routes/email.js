@@ -29,10 +29,25 @@ router.get('/', function (req, res) {
         })
         .then( doc => {
             console.log(doc);
+            res.status(201).json({doc});
         })
         .catch(err => {
             console.log(err);
             res.status(500).json({error: err});
+        });
+});
+
+router.post('/delete', function (req,res) {
+    EmailModel
+        .findOneAndRemove(
+            {email: req.body.email}
+        )
+        .then( response => {
+            console.log(response);
+            res.status(201).json({response});
+        })
+        .catch(err => {
+            console.log(err);
         });
 });
 
