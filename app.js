@@ -1,13 +1,13 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+let createError = require('http-errors');
+let express = require('express');
+let path = require('path');
+let cookieParser = require('cookie-parser');
+let logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+let indexRouter = require('./routes/index');
+let usersRouter = require('./routes/users');
 
-var app = express();
+let app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -39,3 +39,26 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+
+let mongoose = require('mongoose');
+
+const server = '127.0.0.1';
+const database = 'mongoDB_example';
+
+class Database {
+  constructor() {
+    this._connect();
+  }
+
+  _connect() {
+    mongoose.connect(`mongodb:/${server}/${database}`)
+        .then(() => {
+          console.log('Database connection successful')
+        })
+        .catch(err => {
+          console.error('Database connection error')
+        })
+  }
+}
+
+module.exports = new Database();
