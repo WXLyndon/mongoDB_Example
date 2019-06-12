@@ -5,7 +5,7 @@ let cookieParser = require('cookie-parser');
 let logger = require('morgan');
 
 let indexRouter = require('./routes/index');
-let usersRouter = require('./routes/users');
+let emailRouter = require('./routes/email');
 
 let app = express();
 
@@ -20,7 +20,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/email', emailRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -38,27 +38,16 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-module.exports = app;
-
 let mongoose = require('mongoose');
 
-const server = '127.0.0.1';
+const server = 'localhost:27017';
 const database = 'mongoDB_example';
-
-class Database {
-  constructor() {
-    this._connect();
-  }
-
-  _connect() {
-    mongoose.connect(`mongodb:/${server}/${database}`)
+    mongoose.connect(`mongodb://${server}/${database}`)
         .then(() => {
-          console.log('Database connection successful')
+            console.log('Database connection successful')
         })
         .catch(err => {
-          console.error('Database connection error')
-        })
-  }
-}
+            console.error('Database connection error')
+        });
 
-module.exports = new Database();
+module.exports = app;
