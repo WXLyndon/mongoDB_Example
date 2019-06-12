@@ -29,7 +29,6 @@ router.get('/', function (req, res) {
         })
         .then( doc => {
             console.log(doc);
-            res.status(201).json({doc});
         })
         .catch(err => {
             console.log(err);
