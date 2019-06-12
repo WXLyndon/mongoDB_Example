@@ -40,9 +40,9 @@ app.use(function (err, req, res, next) {
 
 let mongoose = require('mongoose');
 mongoose.set('useFindAndModify', false);
-
 const server = 'localhost:27017';
 const database = 'mongoDB_example';
+
 mongoose.connect(`mongodb://${server}/${database}`, {useNewUrlParser: true, useCreateIndex: true})
     .then(() => {
         console.log('Database connection successful')

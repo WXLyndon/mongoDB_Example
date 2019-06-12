@@ -9,9 +9,9 @@ let emailSchema = new mongoose.Schema({
         required: true,
         unique: true,
         lowercase: true,
-        validate: (value => {
-            return validator.isEmail(value)
-        })
+        validate: (value) => {
+            return validator.isEmail(value);
+        }
     }
 });
 

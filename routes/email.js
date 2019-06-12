@@ -30,7 +30,7 @@ router.get('/', function (req, res) {
         })
         .then(doc => {
             console.log(doc);
-            res.status(201).json(doc);
+            res.status(200).json(doc);
         })
         .catch(err => {
             console.log(err);
@@ -50,14 +50,15 @@ router.post('/update', function (req, res) {
             },
             {
                 new: true,
-                runValidate: true
+                runValidators: true
             })
         .then(doc => {
             console.log(doc);
             res.status(201).json(doc)
         })
         .catch(err => {
-            console.error(err)
+            console.error(err);
+            res.status(500).json(err);
         })
 
 });
@@ -74,6 +75,7 @@ router.post('/delete', function (req, res) {
         })
         .catch(err => {
             console.log(err);
+            res.status(500).json(err);
         });
 });
 
