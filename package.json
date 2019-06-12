@@ -1,0 +1,24 @@
+{
+  "name": "mongoDB_Example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WXLyndon/mongoDB_Example.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WXLyndon/mongoDB_Example/issues"
+  },
+  "homepage": "https://github.com/WXLyndon/mongoDB_Example#readme",
+  "dependencies": {
+    "mongoose": "^5.5.14",
+    "validator": "^11.0.0"
+  }
+}
