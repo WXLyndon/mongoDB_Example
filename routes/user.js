@@ -24,13 +24,20 @@ router.post('/', function (req, res) {
 });
 
 router.get('/', function (req, res) {
-    let user = new UserModel({
-    });
-    user.fullName = 'Lyndon Wang';
-    console.log(user.toJSON());
-    console.log();
-    console.log(user.getInitials());
-    res.json(user.getInitials());
+    // let user = new UserModel({
+    // });
+    // user.fullName = 'Lyndon Wang';
+    // console.log(user.toJSON());
+    // console.log();
+    // console.log(user.getInitials());
+    // res.json(user.getInitials());
+    UserModel.getUsers().then(docs=>{
+        console.log(docs);
+        res.json(docs);
+    })
+        .catch(err=>{
+            console.error(err);
+        })
 });
 
 module.exports = router;
