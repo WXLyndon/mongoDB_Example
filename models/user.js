@@ -4,8 +4,24 @@ let userSchema = new mongoose.Schema({
     _id: mongoose.Types.ObjectId,
     id: {type: String, unique: true},
     firstName: String,
-    lastName: String
+    lastName: String,
+    createAt: Date,
+    updateAt: Date
 });
+
+userSchema.pre('save', function (next) {
+   let now = Date.now();
+
+   this.updateAt = now;
+   // Set a value for createAt only if it is null
+    if (!this.createAt){
+        this.createAt =now
+    }
+
+    // Call the next function in the pre-save chain.
+    next();
+});
+
 userSchema.virtual('fullName').get(function () {
     return this.firstName + ' ' + this.lastName;
 });
